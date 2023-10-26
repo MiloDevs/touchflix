@@ -18,7 +18,6 @@ export type CarouselProps = {
 };
 
 export default function CarouselItem(carouselProps: {carouselProps: CarouselProps[]}) {
-    console.log(carouselProps);
   return (
     <div className="h-[500px]">
       <Carousel
@@ -27,14 +26,13 @@ export default function CarouselItem(carouselProps: {carouselProps: CarouselProp
         dynamicHeight={true}
         infiniteLoop
         showThumbs={false}
-        showStatus={true}
-        showIndicators={true}
+        showStatus={false}
         interval={5000}
         className="md:h-[500px]"
       >
         {carouselProps.carouselProps.map((item) => (
-          <div key={item.title} className=" h-[70vh] md:h-[500px] flex w-full">
-            <div className="text-white flex w-3/6  flex-col text-left items-start justify-center px-12">
+          <div key={item.title} className=" h-[70vh] md:h-[500px] flex w-full relative">
+            <div className="text-white flex w-full md:w-3/6  flex-col text-left items-start md:justify-center justify-end px-6 pb-12 md:pb-0">
               <h1 className="font-semibold text-xl md:text-4xl">
                 {item.title}
               </h1>
@@ -54,7 +52,7 @@ export default function CarouselItem(carouselProps: {carouselProps: CarouselProp
                 </button>
               </div>
             </div>
-            <div className="relative h-full w-3/6">
+            <div className="absolute w-full -z-10 h-full md:relative md:h-full md:w-3/6">
               <Image
                 src={item.image}
                 alt="Picture of the author"
@@ -62,7 +60,7 @@ export default function CarouselItem(carouselProps: {carouselProps: CarouselProp
                 height={1080}
                 className="object-cover aspect-square w-full h-full"
               />
-              <div className="absolute top-0 h-full w-full bg-gradient-to-r from-black to-transparent"></div>
+              <div className="absolute md:flex top-0 h-full w-full bg-gradient-to-t md:bg-gradient-to-r from-black to-transparent"></div>
             </div>
           </div>
         ))}

@@ -8,24 +8,27 @@ export default function Navbar() {
   const navigation = [
     { title: "Home", Link: "#" },
     { title: "Genre", Link: "#" },
-    { title: "Movies", Link: "#" },
-    { title: "Series", Link: "#" },
+    { title: "Movies", Link: "../movies" },
+    { title: "Series", Link: "../series" },
   ];
 
   return (
-    <nav>
-      <div>
-        <div>
+    <nav className="sticky top-0 z-20 bg-transparent backdrop-filter w-full backdrop-blur-md">
+      <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
+        <div className="flex items-center justify-between py-3 md:py-5 md:block">
           <a href="/">
             <Image
               src="/touchflix.svg"
-              width={500}
-              height={500}
+              width={50}
+              height={50}
               alt="touchflix_svg"
             />
           </a>
-          <div>
-            <button>
+          <div className="md:hidden">
+            <button
+              className="text-gray-100 outline-none p-2 rounded-md focus:border focus:border-gray-300"
+              onClick={() => setState(!state)}
+            >
               {state ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -58,23 +61,23 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-        <div>
-            <ul>
-                {navigation.map((item, idx) => {
-                    return (
-                        <li key={idx}>
-                            <a href={item.Link}>{item.title}</a>
-                        </li>
-                    )
-                })}
-            </ul>
+        <div
+          className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
+            state ? "block" : "hidden"
+          }`}
+        >
+          <ul className="justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0">
+            {navigation.map((item, idx) => {
+              return (
+                <li key={idx} className="text-white hover:text-gray-700">
+                  <a href={item.Link}>{item.title}</a>
+                </li>
+              );
+            })}
+          </ul>
         </div>
-        <div>
-            {/* Search Box */}
-        </div>
-        <div>
-            {/* User Icon */}
-        </div>
+        <div>{/* Search Box */}</div>
+        <div>{/* User Icon */}</div>
       </div>
     </nav>
   );

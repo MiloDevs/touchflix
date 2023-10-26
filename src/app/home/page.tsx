@@ -1,5 +1,5 @@
-
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Carousel, { CarouselProps } from "../components/widgets/carousel/carousel";
 import CarouselItem from "../components/widgets/carousel/carousel";
 
@@ -43,7 +43,44 @@ const carouselitems: CarouselProps[]  = [
   },
 ];
 
+function fethData() {
+  setTimeout(() => {
+    return carouselitems;
+  }, 2000);
+}
+
 export default function Home() {
+  const router = useRouter();
+  const [isloading, setIsLoading] = useState(true);
+  const [movies, setMovies] = useState<MovieResponse[] | undefined>(undefined);
+  const [loading, setLoading] = useState(false);
+
+  setTimeout(() =>{
+    setIsLoading(false);
+  }, 2000);
+
+  const fetchMovies = async () => {
+      try {
+        const response = await axios.get("https://api.themoviedb.org/3/discover/movie", {
+          headers: {
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_KEY}`,
+          },
+        });
+        
+        setMovies(response.data.results);
+        setIsLoading(false);
+      } catch (error) {
+        console.log("Error fetching movies:", error);
+        setIsLoading(false);
+      }
+  };
+
+  useEffect(() =>{
+     fetchMovies();
+  }, [])
+  console.log(movies);
+
+  
   return (
     <div>
       <CarouselItem
@@ -51,4 +88,5 @@ export default function Home() {
        />
     </div>
   );
+
 }
