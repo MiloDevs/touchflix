@@ -2,7 +2,7 @@
 import React from "react";
 import Carousel, { CarouselProps } from "../components/widgets/carousel/carousel";
 import CarouselItem from "../components/widgets/carousel/carousel";
-
+import Navbar from "../components/nav/navbar/navbar";
 
 const carouselitems: CarouselProps[]  = [
   {
@@ -46,6 +46,7 @@ const carouselitems: CarouselProps[]  = [
 export default function Home() {
   return (
     <div>
+      <Navbar/>
       <CarouselItem
         carouselProps={carouselitems}
        />
