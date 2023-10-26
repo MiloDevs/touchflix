@@ -5,9 +5,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+type genre = {
+  id: number;
+  name: string;
+}
+
 export default function Navbar() {
   const [state, setState] = useState(false);
-  const [genreData, setGenreData] = useState([]);
+  const [genreData, setGenreData] = useState<genre[]>([]);
 
   const navigation = [
     { title: "Home", Link: "/home" },
@@ -91,7 +96,7 @@ export default function Navbar() {
                     {item.title}
                   </a>
                   {item.title === "Genre" && (
-                    <ul className="grid hidden grid-cols-5 absolute origin-top-right top-full mt-5 bg-black p-4 py-6 gap-2 rounded">
+                    <ul className="hidden grid-cols-5 absolute origin-top-right top-full mt-5 bg-black p-4 py-6 gap-2 rounded">
                       {genreData.map((genre) => (
                         <li key={genre.id!} className="hover:text-gray-700">
                           <Link href={`/movies/${genre.name!}/${genre.id}?page=1`}>
