@@ -98,9 +98,9 @@ export default function Navbar() {
                   {item.title === "Genre" && (
                     <ul className="hidden grid-cols-5 absolute origin-top-right top-full mt-5 bg-black p-4 py-6 gap-2 rounded">
                       {genreData.map((genre) => (
-                        <li key={genre.id!} className="hover:text-gray-700">
-                          <Link href={`/movies/${genre.name!}/${genre.id}?page=1`}>
-                            {genre?.name!}
+                        <li key={genre?.id} className="hover:text-gray-700">
+                          <Link href={`/movies/${genre?.name!}/${genre?.id}?page=1`}>
+                            {genre?.name}
                           </Link>
                         </li>
                       ))}
