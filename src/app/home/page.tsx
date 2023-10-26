@@ -1,13 +1,10 @@
-"use client";
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import React, { Component } from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
-import Image from "next/image";
-import { BugPlay, Play, PlayCircle } from 'lucide-react';
-import CarouselItem from '../components/widgets/carousel-item';
 
-const carouselitems = [
+import React from "react";
+import Carousel, { CarouselProps } from "../components/widgets/carousel";
+import CarouselItem from "../components/widgets/carousel";
+
+
+const carouselitems: CarouselProps[]  = [
   {
     title: "Saw X",
     description:
@@ -48,22 +45,10 @@ const carouselitems = [
 
 export default function Home() {
   return (
-    <div className="h-[500px]">
-      <Carousel
-        width="100%"
-        autoPlay
-        dynamicHeight={true}
-        infiniteLoop
-        showThumbs={true}
-        showStatus={true}
-        showIndicators={true}
-        interval={5000}
-        className="md:h-[500px]"
-      >
-        {carouselitems.map((item) => (
-          <CarouselItem key={item.title} {...item} />
-        ))}
-      </Carousel>
+    <div>
+      <CarouselItem
+        carouselProps={carouselitems}
+       />
     </div>
   );
 }
