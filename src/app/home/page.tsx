@@ -4,6 +4,10 @@ import Carousel, { CarouselProps } from "../components/widgets/carousel/carousel
 import CarouselItem from "../components/widgets/carousel/carousel";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import Navbar from "../components/nav/navbar/navbar";
+import Footer from "../components/footer/footer";
+import Image from "next/image";
+import { StarIcon } from "lucide-react";
 
 export type MovieResponse = {
   adult: boolean;
@@ -102,9 +106,50 @@ export default function Home() {
   
   return (
     <div>
+
+    <Navbar />
+    <div>
       <CarouselItem
         carouselProps={carouselitems}
-       />
+        />
+
+      <h1 className="font-semibold text-xl mt-5 px-12">Latest Movies</h1>
+      <div className="mt-3 grid grid-cols-6 gap-8 px-12">
+          {movies?.map((movie) => {
+            return (
+              <div key={movie.id} 
+              className="h-full"
+              onClick={() => router.push(`/movie/${movie.id}`)}
+              >
+                <div>
+                  <Image
+                    src={`https://www.themoviedb.org/t/p/w1280/${movie.poster_path}`}
+                    alt={movie.title}
+                    className="object-cover w-full h-full"
+                    width={1920}
+                    height={1080}
+                  />
+                </div>
+                <h1 className="truncate overflow-hidden text-semibold mt-2">
+                  {movie.title}
+                </h1>
+                <div className="mt-1 flex items-center justify-between">
+                  <span className="text-xs">
+                    {movie.release_date.slice(0, 4)}
+                  </span>
+                  <p className="text-xs flex items-center">
+                    rating: <span className="text-yellow-300 ml-1 text-xs flex items-center space-x-1">
+                      {movie.vote_average}
+                      <StarIcon fill="#ffff00" className="w-3 ml-0.5 h-3 inline-block" />
+                    </span>
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+      </div>
+    </div>
+    <Footer />
     </div>
   );
 

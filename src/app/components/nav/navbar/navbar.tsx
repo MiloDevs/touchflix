@@ -19,8 +19,8 @@ export default function Navbar() {
           <a href="/">
             <Image
               src="/touchflix.svg"
-              width={50}
-              height={50}
+              width={20}
+              height={20}
               alt="touchflix_svg"
             />
           </a>

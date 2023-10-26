@@ -5,6 +5,8 @@ import { useParams } from "next/navigation";
 import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
+import Navbar from '@/app/components/nav/navbar/navbar';
+import Footer from '@/app/components/footer/footer';
 
 export default function Movie () {
     const params = useParams();
@@ -32,6 +34,8 @@ export default function Movie () {
     console.log(movie);
 
   return (
+    <div>
+    <Navbar />
     <div className="container mx-auto">
       <h1 className='text-white text-sm'>
         <Link href="/home">Home</Link> /
@@ -45,8 +49,10 @@ export default function Movie () {
             height={1080}
             width={1920}
             className="object-contain w-full h-auto block"
-          />
+            />
       </div>
+    </div>
+    <Footer />
     </div>
   );
 };
