@@ -24,11 +24,11 @@ export default function CarouselItem(carouselProps: CarouselProps) {
                 <span className='text-xs'>{carouselProps.duration}</span>
             </div>
             <h2 className='mt-2 md:mt-4'>Overview</h2>
-            <p className='mt-0.5 text-[0.12rem] md:mt-1 md:text-sm text-neutral-400'>
+            <p className='mt-0.5 text-[0.4rem] md:mt-1 md:text-sm text-neutral-400 max-h-10 md:max-h-fit text-ellipsis overflow-y-hidden'>
               {carouselProps.description}
             </p>
             <div className='mt-4 md:mt-8'>
-                <button className='px-3 py-0.5 text-[0.4rem] md:px-6 md:py-2 flex items-center bg-white text-black rounded-full font-semibold hover:bg-transparent hover:text-white hover:outline active:outline active:outline-offset-4  active:bg-white active:text-black'>
+                <button className='px-3 py-0.5 text-[0.4rem] md:text-sm md:px-6 md:py-2 flex items-center bg-white text-black rounded-full font-semibold hover:bg-transparent hover:text-white hover:outline active:outline active:outline-offset-4  active:bg-white active:text-black'>
                     <PlayCircle className='' />
                     Watch Now
                 </button>
