@@ -102,10 +102,10 @@ export default function Home() {
   
   return (
     <div>
-            <CarouselItem
+      <CarouselItem
         carouselProps={carouselitems}
        />
-          </div>
+    </div>
   );
 
 }
