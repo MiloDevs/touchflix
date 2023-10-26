@@ -12,26 +12,31 @@ type genre = {
 
 export default function Navbar() {
   const [state, setState] = useState(false);
-  const [genreData, setGenreData] = useState<genre[]>([]);
+  const [movieGenreData, setMovieGenreData] = useState<genre[]>([]);
+  const [seriesGenreData, setSeriesGenreData] = useState<genre[]>([]);
 
   const navigation = [
     { title: "Home", Link: "/home" },
-    { title: "Genre", Link: "#" },
     { title: "Movies", Link: "../movies" },
     { title: "Series", Link: "../series" },
   ];
 
   // Fetch genres when the component mounts
-  const fetchGenres = async () => {
+  const fetchMovieGenres = async () => {
     const genres = await getGenres(MediaType.Movie);
-    setGenreData(genres);
-    console.log(genreData);
+    setMovieGenreData(genres);
+  };
+
+  const fetchSeriesGenres = async () => {
+    const genres = await getGenres(MediaType.TV);
+    setSeriesGenreData(genres);
   };
 
 
   // Fetch genres when the component mounts
   useEffect(() => {
-    fetchGenres();
+    fetchMovieGenres();
+    fetchSeriesGenres();
   }, []);
 
   return (
@@ -95,9 +100,9 @@ export default function Navbar() {
                   <a href={item.Link} className="hover:text-gray-700">
                     {item.title}
                   </a>
-                  {item.title === "Genre" && (
+                  {item.title === "Movies" && (
                     <ul className="hidden grid-cols-5 absolute origin-top-right top-full mt-5 bg-black p-4 py-6 gap-2 rounded">
-                      {genreData.map((genre) => (
+                      {movieGenreData.map((genre) => (
                         <li key={genre?.id} className="hover:text-gray-700">
                           <Link href={`/movies/${genre?.name!}/${genre?.id}?page=1`}>
                             {genre?.name}
@@ -105,6 +110,17 @@ export default function Navbar() {
                         </li>
                       ))}
                     </ul>
+                    )}
+                    {item.title === "Series" && (
+                      <ul className="hidden grid-cols-5 absolute origin-top-right top-full mt-5 bg-black p-4 py-6 gap-2 rounded">
+                        {seriesGenreData.map((genre) => (
+                          <li key={genre?.id} className="hover:text-gray-700">
+                            <Link href={`/series/${genre?.name!}/${genre?.id}?page=1`}>
+                              {genre?.name}
+                            </Link>
+                          </li>
+                      ))}
+                      </ul>
                   )}
                 </li>
               );

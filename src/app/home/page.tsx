@@ -8,6 +8,7 @@ import Navbar from "../components/nav/navbar/navbar";
 import Footer from "../components/footer/footer";
 import Image from "next/image";
 import { StarIcon } from "lucide-react";
+import ImageComponent from "../components/widgets/movie-image/MovieImage";
 
 export type MovieResponse = {
   adult: boolean;
@@ -118,6 +119,11 @@ export default function Home() {
 
       <h1 className="font-semibold text-xl mt-5 px-12">Latest Movies</h1>
       <div className="mt-3 grid grid-cols-6 gap-8 px-12">
+          {isloading && (
+            [...Array(6)].map((_, index) => (
+              <div key={index} className="w-full h-56 rounded-xl animate-pulse bg-neutral-700"></div>  
+            ))
+          )}
           {movies?.map((movie) => {
             return (
               <div key={movie.id} 
@@ -125,12 +131,9 @@ export default function Home() {
               onClick={() => router.push(`/movie/${movie.id}`)}
               >
                 <div>
-                  <Image
-                    src={`https://www.themoviedb.org/t/p/w1280/${movie.poster_path}`}
-                    alt={movie.title}
-                    className="object-cover w-full h-full rounded-lg"
-                    width={1920}
-                    height={1080}
+                  <ImageComponent 
+                  src={`https://www.themoviedb.org/t/p/w1280/${movie.poster_path}`}
+                  alt={movie.title}
                   />
                 </div>
                 <h1 className="truncate overflow-hidden text-semibold mt-2">

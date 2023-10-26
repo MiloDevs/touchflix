@@ -1,8 +1,10 @@
 "use client"
 import Footer from "@/app/components/footer/footer";
 import Navbar from "@/app/components/nav/navbar/navbar";
+import ImageComponent from "@/app/components/widgets/movie-image/MovieImage";
 import { MovieResponse } from "@/app/home/page";
-import { getMoviesByGenre } from "@/app/tmdb/tmdb-helper";
+import Movie from "@/app/movie/[movie_id]/page";
+import { getMovies, getMoviesByGenre } from "@/app/tmdb/tmdb-helper";
 import Image from "next/image";
 import { useParams, useSearchParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -12,23 +14,39 @@ export default function Movies() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const params = useParams();
-  const genre = params.genre[0];
-  const genre_id = params.genre[1];
+  let genre = "0";
+  let genre_id = "0";
+
+  if (params.genre && Array.isArray(params.genre)) {
+    genre = params.genre[0];
+    genre_id = params.genre[1];
+  }
   const page = parseInt(searchParams.get('page') || "1") || 1;
   const [moviesData, setMovies] = useState<MovieResponse[] | undefined>(
     undefined
   );
+  const [loading, setLoading] = useState(false);
 
 const fetchMovies = async () => {
+    setLoading(true);
     try {
-        const movies = await getMoviesByGenre(genre_id.toString(), page);
+      if(genre === "0" && genre_id === "0"){
+        const movies = await getMovies(page);
         setMovies(movies);
+        console.log(movies)
+        setLoading(false);
+        return;
+      }
+      const movies = await getMoviesByGenre(genre_id.toString(), page);
+      setMovies(movies);
+      setLoading(false);
     } catch (error) {
         console.error("Error fetching movies:", error);
     }
 };
 
 useEffect(() => {
+    setLoading(true);
     fetchMovies();
 }, [page]);
 
@@ -36,14 +54,25 @@ useEffect(() => {
     <div>
       <Navbar />
       <div className="grid grid-cols-2 px-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:px-12">
+        {loading &&
+          [...Array(12)].map((_, index) => (
+            <div
+              key={index}
+              className="w-full h-56 rounded-xl animate-pulse bg-neutral-700"
+            ></div>
+          ))}
         {moviesData?.map((movie) => (
-          <div key={movie.id} className="mt-8">
-            <Image
+          <div
+            key={movie.id}
+            className="mt-8"
+            onClick={() => {
+              router.push(`/movie/${movie.id}`);
+            }}
+          >
+            <ImageComponent
               src={`https://www.themoviedb.org/t/p/w1280/${movie.backdrop_path}`}
               alt={movie.title}
-              className="rounded-lg shadow-md"
-              height={1080}
-              width={1920}
+              /* onClick={() => router.push(`/movie/${movie.id}`)} */
             />
             <div className="mt-2">
               <div className="text-lg mt-2 truncate overflow-hidden hover:text-gray-300">
@@ -64,30 +93,35 @@ useEffect(() => {
                 </svg>
                 <span className="ml-1">{movie.vote_average}</span>
                 <span className="mx-2">|</span>
-                <span className="text-sm">{movie.release_date.slice(0, 4)}</span>
+                <span className="text-sm">
+                  {movie.release_date.slice(0, 4)}
+                </span>
               </div>
             </div>
           </div>
         ))}
       </div>
-      <div className="flex justify-center py-6 space-x-4 items-center">
+      <div className="flex justify-center py-6 mt-2 space-x-4 items-center">
         {page > 1 && (
-            <button
-                className="bg-gray-800 text-white font-semibold px-4 py-2 rounded-lg"
-                onClick={() => router.push(`/movies/${genre}/${genre_id}?page=${page - 1}`)}
-            >
-                Previous
-            </button>
-            )}
-            {moviesData?.length === 20 && (
-            <button
-                className="bg-gray-800 text-white font-semibold px-4 py-2 rounded-lg"
-                onClick={() => router.push(`/movies/${genre}/${genre_id}?page=${page + 1}`)}
-            >
-                Next
-            </button>
-            )
-        }
+          <button
+            className="bg-neutral-800 hover:bg-neutral-600 text-white font-semibold px-4 py-2 rounded-lg"
+            onClick={() =>
+              router.push(`/movies/${genre}/${genre_id}?page=${page - 1}`)
+            }
+          >
+            Previous
+          </button>
+        )}
+        {moviesData?.length === 20 && (
+          <button
+            className="bg-neutral-800 hover:bg-neutral-600 text-white font-semibold px-4 py-2 rounded-lg"
+            onClick={() =>
+              router.push(`/movies/${genre}/${genre_id}?page=${page + 1}`)
+            }
+          >
+            Next
+          </button>
+        )}
       </div>
       <Footer />
     </div>
