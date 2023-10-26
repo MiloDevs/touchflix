@@ -1,7 +1,7 @@
 
 import React from "react";
-import Carousel, { CarouselProps } from "../components/widgets/carousel";
-import CarouselItem from "../components/widgets/carousel";
+import Carousel, { CarouselProps } from "../components/widgets/carousel/carousel";
+import CarouselItem from "../components/widgets/carousel/carousel";
 
 
 const carouselitems: CarouselProps[]  = [
