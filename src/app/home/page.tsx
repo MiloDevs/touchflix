@@ -84,11 +84,14 @@ export default function Home() {
 
   const fetchMovies = async () => {
       try {
-        const response = await axios.get("https://api.themoviedb.org/3/discover/movie", {
-          headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_KEY}`,
-          },
-        });
+        const response = await axios.get(
+          "https://api.themoviedb.org/3/discover/movie?&include_video=true",
+          {
+            headers: {
+              Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_KEY}`,
+            },
+          }
+        );
         
         setMovies(response.data.results);
         setIsLoading(false);
@@ -125,7 +128,7 @@ export default function Home() {
                   <Image
                     src={`https://www.themoviedb.org/t/p/w1280/${movie.poster_path}`}
                     alt={movie.title}
-                    className="object-cover w-full h-full"
+                    className="object-cover w-full h-full rounded-lg"
                     width={1920}
                     height={1080}
                   />

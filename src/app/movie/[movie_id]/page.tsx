@@ -39,7 +39,7 @@ export default function Movie () {
     <div className="container mx-auto">
       <h1 className='text-white text-sm'>
         <Link href="/home">Home</Link> /
-        <Link href="/home">Movies</Link> /
+        <Link href="/movies">Movies</Link> /
         {movie?.title}
       </h1>
       <div className="w-full mt-4 h-[500px]">

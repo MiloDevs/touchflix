@@ -1,16 +1,33 @@
 "use client";
+import { MediaType, getGenres } from "@/app/tmdb/tmdb-helper";
+import { get } from "http";
 import Image from "next/image";
-import { useState } from "react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const [state, setState] = useState(false);
+  const [genreData, setGenreData] = useState([]);
 
   const navigation = [
-    { title: "Home", Link: "#" },
+    { title: "Home", Link: "/home" },
     { title: "Genre", Link: "#" },
     { title: "Movies", Link: "../movies" },
     { title: "Series", Link: "../series" },
   ];
+
+  // Fetch genres when the component mounts
+  const fetchGenres = async () => {
+    const genres = await getGenres(MediaType.Movie);
+    setGenreData(genres);
+    console.log(genreData);
+  };
+
+
+  // Fetch genres when the component mounts
+  useEffect(() => {
+    fetchGenres();
+  }, []);
 
   return (
     <nav className="sticky top-0 z-20 bg-transparent backdrop-filter w-full backdrop-blur-md">
@@ -66,11 +83,24 @@ export default function Navbar() {
             state ? "block" : "hidden"
           }`}
         >
-          <ul className="justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0">
+          <ul className="justify-center items-center relative space-y-8 md:flex md:space-x-6 md:space-y-0">
             {navigation.map((item, idx) => {
               return (
-                <li key={idx} className="text-white hover:text-gray-700">
-                  <a href={item.Link}>{item.title}</a>
+                <li key={idx} className="text-white">
+                  <a href={item.Link} className="hover:text-gray-700">
+                    {item.title}
+                  </a>
+                  {item.title === "Genre" && (
+                    <ul className="grid hidden grid-cols-5 absolute origin-top-right top-full mt-5 bg-black p-4 py-6 gap-2 rounded">
+                      {genreData.map((genre) => (
+                        <li key={genre.id!} className="hover:text-gray-700">
+                          <Link href={`/movies/${genre.name!}/${genre.id}?page=1`}>
+                            {genre?.name!}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </li>
               );
             })}
