@@ -27,7 +27,7 @@ export default function Navbar() {
           <div className="md:hidden">
             <button
               className="text-gray-100 outline-none p-2 rounded-md focus:border focus:border-gray-300"
-              onClick={() =>setState(!state)}
+              onClick={() => setState(!state)}
             >
               {state ? (
                 <svg

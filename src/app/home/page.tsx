@@ -3,6 +3,7 @@ import React from "react";
 import Carousel, { CarouselProps } from "../components/widgets/carousel/carousel";
 import CarouselItem from "../components/widgets/carousel/carousel";
 import Navbar from "../components/nav/navbar/navbar";
+import Footer from "../components/footer/footer";
 
 const carouselitems: CarouselProps[]  = [
   {
@@ -50,6 +51,7 @@ export default function Home() {
       <CarouselItem
         carouselProps={carouselitems}
        />
+      <Footer/>
     </div>
   );
 }
