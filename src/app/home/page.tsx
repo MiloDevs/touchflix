@@ -2,6 +2,25 @@
 import React, { useEffect, useState } from "react";
 import Carousel, { CarouselProps } from "../components/widgets/carousel/carousel";
 import CarouselItem from "../components/widgets/carousel/carousel";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+
+export type MovieResponse = {
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: number[];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+};
 
 
 const carouselitems: CarouselProps[]  = [
@@ -83,10 +102,10 @@ export default function Home() {
   
   return (
     <div>
-      <CarouselItem
+            <CarouselItem
         carouselProps={carouselitems}
        />
-    </div>
+          </div>
   );
 
 }
