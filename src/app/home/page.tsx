@@ -9,6 +9,7 @@ import Footer from "../components/footer/footer";
 import Image from "next/image";
 import { StarIcon } from "lucide-react";
 import ImageComponent from "../components/widgets/movie-image/MovieImage";
+import { scrapeAndSave } from "../lib/actions";
 
 export type MovieResponse = {
   adult: boolean;
@@ -107,6 +108,18 @@ export default function Home() {
   }, [])
   console.log(movies);
 
+  const handleMovies = async () => {
+    try{
+      const movie = await scrapeAndSave(
+        "https://fmovies.llc/watch-movie/fast-and-furious-10-fmovies-8846.9651934"
+      );
+    }
+    catch(error){
+      console.log(error);
+    }
+
+  }
+
   
   return (
     <div>
@@ -155,6 +168,7 @@ export default function Home() {
           })}
       </div>
     </div>
+    <button className="bg-primary-500 text-white px-4 py-2 rounded-xl mt-5 mx-12" onClick={handleMovies}>Load</button>    
     <Footer />
     </div>
   );
