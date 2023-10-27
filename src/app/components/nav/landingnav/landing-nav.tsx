@@ -12,8 +12,8 @@ export default function LandingNav() {
             <a href="/">
               <Image
                 src="/touchflix.svg"
-                width={50}
-                height={50}
+                width={20}
+                height={20}
                 alt="touchflix_svg"
               />
             </a>
@@ -25,7 +25,7 @@ export default function LandingNav() {
                   <li key="idx">
                     <a
                       href={item.Link}
-                      className="py-2 px-4 text-black bg-gray-100 hover:bg-gray-200 rounded-md shadow"
+                      className="py-2 px-4 text-black bg-gray-100 hover:bg-gray-400 rounded-md shadow"
                     >
                       {item.title}
                     </a>
