@@ -30,25 +30,26 @@ export default function Movies() {
 const fetchMovies = async () => {
     setLoading(true);
     try {
-      if(genre === "0" && genre_id === "0"){
-        const movies = await getMovies(page);
+        if(genre === "0" && genre_id === "0"){
+          const movies = await getMovies(page);
+          setMovies(movies);
+          console.log(movies)
+          setLoading(false);
+          return;
+        }
+        const movies = await getMoviesByGenre(genre_id.toString(), page);
         setMovies(movies);
-        console.log(movies)
         setLoading(false);
-        return;
+      } catch (error) {
+          console.error("Error fetching movies:", error);
       }
-      const movies = await getMoviesByGenre(genre_id.toString(), page);
-      setMovies(movies);
-      setLoading(false);
-    } catch (error) {
-        console.error("Error fetching movies:", error);
-    }
-};
 
-useEffect(() => {
-    setLoading(true);
-    fetchMovies();
-}, [page]);
+    };
+
+    useEffect(() => {
+        setLoading(true);
+        fetchMovies();
+    }, [page]);
 
   return (
     <div>
