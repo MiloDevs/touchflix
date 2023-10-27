@@ -3,9 +3,7 @@ import Footer from "@/app/components/footer/footer";
 import Navbar from "@/app/components/nav/navbar/navbar";
 import ImageComponent from "@/app/components/widgets/movie-image/MovieImage";
 import { MovieResponse } from "@/app/home/page";
-import Movie from "@/app/movie/[movie_id]/page";
 import { getMovies, getMoviesByGenre } from "@/app/tmdb/tmdb-helper";
-import Image from "next/image";
 import { useParams, useSearchParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
