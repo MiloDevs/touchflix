@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.18",
     "axios": "^1.5.1",
     "cheerio": "^1.0.0-rc.12",
     "lucide-react": "^0.289.0",
