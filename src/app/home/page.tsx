@@ -1,15 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Carousel, { CarouselProps } from "../components/widgets/carousel/carousel";
+import { CarouselProps } from "../components/widgets/carousel/carousel";
 import CarouselItem from "../components/widgets/carousel/carousel";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import Navbar from "../components/nav/navbar/navbar";
 import Footer from "../components/footer/footer";
-import Image from "next/image";
 import { StarIcon } from "lucide-react";
 import ImageComponent from "../components/widgets/movie-image/MovieImage";
-import { scrapeAndSave } from "../lib/actions";
 
 export type MovieResponse = {
   adult: boolean;
@@ -87,7 +85,7 @@ export default function Home() {
   const fetchMovies = async () => {
       try {
         const response = await axios.get(
-          "https://84.46.254.230/mission-impossible-dead-reckoning-part-one-2023/",
+          "https://api.themoviedb.org/3/discover/movie?&include_video=true",
           {
             headers: {
               Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_KEY}`,
@@ -107,18 +105,6 @@ export default function Home() {
      fetchMovies();
   }, [])
   console.log(movies);
-
-  const handleMovies = async () => {
-    try{
-      const movie = await scrapeAndSave(
-        "https://fmovies.llc/watch-movie/mission-impossible-7-fmovies-68135.9725071"
-      );
-    }
-    catch(error){
-      console.log(error);
-    }
-
-  }
 
   
   return (
@@ -143,7 +129,7 @@ export default function Home() {
               className="h-full"
               onClick={() => router.push(`/movie/${movie.id}`)}
               >
-                <div>
+                <div className="h-56">
                   <ImageComponent 
                   src={`https://www.themoviedb.org/t/p/w1280/${movie.poster_path}`}
                   alt={movie.title}
@@ -167,8 +153,7 @@ export default function Home() {
             );
           })}
       </div>
-    </div>
-    <button className="bg-primary-500 text-white px-4 py-2 rounded-xl mt-5 mx-12" onClick={handleMovies}>Load</button>    
+    </div>    
     <Footer />
     </div>
   );
