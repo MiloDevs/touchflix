@@ -21,7 +21,7 @@ export default function ImageComponent({ src, alt } : ImageComponentProps) {
   }, []);
 
   return (
-    <div className="relative">
+    <div className="relative w-full h-full">
       {isLoading ? (
         <div className={`w-full h-full absolute top-0 rounded-xl animate-pulse ${!isLoading ? "hidden" : " "} bg-neutral-700`} ></div>
       ) : null}
@@ -32,7 +32,7 @@ export default function ImageComponent({ src, alt } : ImageComponentProps) {
         alt={alt}
         onLoad={handleImageLoad}
         onError={handleImageError}
-        className="w-full object-cover rounded-xl"
+        className="w-full object-cover h-full rounded-xl"
         width={1920}
         height={1080}
       />

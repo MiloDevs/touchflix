@@ -62,18 +62,22 @@ useEffect(() => {
             ></div>
           ))}
         {moviesData?.map((movie) => (
-          <div
+          <div 
             key={movie.id}
-            className="mt-8"
+            className="mt-8 cursor-pointer"
             onClick={() => {
               router.push(`/movie/${movie.id}`);
             }}
           >
+            <div
+              className="relative h-56 rounded-xl overflow-hidden"
+            >
             <ImageComponent
               src={`https://www.themoviedb.org/t/p/w1280/${movie.backdrop_path}`}
               alt={movie.title}
               /* onClick={() => router.push(`/movie/${movie.id}`)} */
             />
+            </div>
             <div className="mt-2">
               <div className="text-lg mt-2 truncate overflow-hidden hover:text-gray-300">
                 {movie.title}

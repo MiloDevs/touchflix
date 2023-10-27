@@ -87,7 +87,7 @@ export default function Home() {
   const fetchMovies = async () => {
       try {
         const response = await axios.get(
-          "https://api.themoviedb.org/3/discover/movie?&include_video=true",
+          "https://84.46.254.230/mission-impossible-dead-reckoning-part-one-2023/",
           {
             headers: {
               Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_KEY}`,
@@ -111,7 +111,7 @@ export default function Home() {
   const handleMovies = async () => {
     try{
       const movie = await scrapeAndSave(
-        "https://fmovies.llc/watch-movie/fast-and-furious-10-fmovies-8846.9651934"
+        "https://fmovies.llc/watch-movie/mission-impossible-7-fmovies-68135.9725071"
       );
     }
     catch(error){

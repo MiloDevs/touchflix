@@ -14,6 +14,18 @@ export default function Navbar() {
   const [state, setState] = useState(false);
   const [movieGenreData, setMovieGenreData] = useState<genre[]>([]);
   const [seriesGenreData, setSeriesGenreData] = useState<genre[]>([]);
+  const [moviesOpen, setMoviesOpen] = useState(false);
+  const [seriesOpen, setSeriesOpen] = useState(false);
+
+  const toggleMovies = () => {
+    setMoviesOpen(!moviesOpen);
+  };
+
+  const toggleSeries = () => {
+    setSeriesOpen(!seriesOpen);
+  };
+
+
 
   const navigation = [
     { title: "Home", Link: "/home" },
@@ -97,14 +109,16 @@ export default function Navbar() {
             {navigation.map((item, idx) => {
               return (
                 <li key={idx} className="text-white">
-                  <a href={item.Link} className="hover:text-gray-700">
+                  <a href={item.Link} className="hover:text-gray-700"
+                  >
                     {item.title}
                   </a>
                   {item.title === "Movies" && (
-                    <ul className="hidden grid-cols-5 absolute origin-top-right top-full mt-5 bg-black p-4 py-6 gap-2 rounded">
+                    <ul
+                     className={`grid-cols-5 ${moviesOpen ? 'grid' : 'hidden'} absolute origin-top-right top-full mt-5 w-max flex-nowrap bg-black p-4 py-6 gap-2 rounded`}>
                       {movieGenreData.map((genre) => (
-                        <li key={genre?.id} className="hover:text-gray-700">
-                          <Link href={`/movies/${genre?.name!}/${genre?.id}?page=1`}>
+                        <li key={genre?.id} className="hover:text-gray-700 flex flex-nowrap">
+                          <Link  href={`/movies/${genre?.name!}/${genre?.id}?page=1`}>
                             {genre?.name}
                           </Link>
                         </li>
@@ -112,7 +126,7 @@ export default function Navbar() {
                     </ul>
                     )}
                     {item.title === "Series" && (
-                      <ul className="hidden grid-cols-5 absolute origin-top-right top-full mt-5 bg-black p-4 py-6 gap-2 rounded">
+                      <ul className={`${seriesOpen ? 'grid' : 'hidden'} grid-cols-5 absolute origin-top-right top-full mt-5 bg-black p-4 py-6 gap-2 rounded`}>
                         {seriesGenreData.map((genre) => (
                           <li key={genre?.id} className="hover:text-gray-700">
                             <Link href={`/series/${genre?.name!}/${genre?.id}?page=1`}>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import * as cheerio from "cheerio";
+import puppeteer from "puppeteer";
 
 export async function scrapeMovie(movieUrl: string) {
     if (!movieUrl) return;
@@ -20,12 +20,25 @@ export async function scrapeMovie(movieUrl: string) {
     };
 
     try {
-        // Fetch movie page
-        const response = await axios.get(movieUrl, options);
-        const $ = cheerio.load(response.data);
+        const browser = await puppeteer.launch({ headless: true }); // Use 'true' for headless mode
+        const page = await browser.newPage();
 
-        // Scrape movie data
+        await page.goto(movieUrl);
 
+        console.log(page.content());
+
+        await page.waitForSelector('div.gmr-embed-responsive.clearfix iframe'); // Corrected the selector
+
+        // Extract the src attribute of the iframe
+        const src = await page.evaluate(() => {
+            const iframeContainer = document.querySelector('div.gmr-embed-responsive.clearfix iframe');
+            const iframe = iframeContainer?.getAttribute('src');
+            return iframe;
+        });
+
+        console.log('The src attribute of the iframe is:', src);
+
+        await browser.close();
     } catch (error: any) {
         throw new Error(error.message);
     }
