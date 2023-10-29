@@ -57,13 +57,16 @@ export default function Movie () {
           <div className="w-full h-full">
             <iframe
               /* src="https://player.vdocipher.com/v2/?otp=20160313versUSE3236bUxDFa8VNLpZjA5zzk3YMlvlYb6nAoVxmkv2PQCASNCUG&playbackInfo=eyJ2aWRlb0lkIjoiODhlY2Q1YzNjOTU0NDJmMDhjNGZjYmU2YTE0YjdmMTQifQ==" */
-              src="https://rabbitstream.net/embed-4/J5g7hEIzXKmO?z="
+              /*  src="https://rabbitstream.net/embed-4/J5g7hEIzXKmO?z=" */
+              src="https://rabbitstream.net/embed-4/VhYq3FYV4IU2?z="
               className="w-full h-full"
               allowFullScreen={true}
-              allow="encrypted-media"
+              allow="encrypted-media *;"
             ></iframe>
           </div>
         </div>
+        <h1 className="font-semibold text-xl">More Like this</h1>
+        <div className="grid grid-cols-6"></div>
       </div>
       <Footer />
     </div>

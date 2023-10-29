@@ -14,7 +14,7 @@ export default function Navbar() {
   const [state, setState] = useState(false);
   const [movieGenreData, setMovieGenreData] = useState<genre[]>([]);
   const [seriesGenreData, setSeriesGenreData] = useState<genre[]>([]);
-  const [moviesOpen, setMoviesOpen] = useState(false);
+  const [moviesOpen, setMoviesOpen] = useState(true);
   const [seriesOpen, setSeriesOpen] = useState(false);
 
   const toggleMovies = () => {
