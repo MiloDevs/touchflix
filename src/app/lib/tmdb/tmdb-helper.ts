@@ -75,5 +75,16 @@ export async function getTVDetails(id: string) {
         return response.data;
 }
 
+export async function getSimilarMovies(id: string){
+    const response = await axios.get(`https://api.themoviedb.org/3/movie/${parseInt(id)}/similar`,{
+        headers: {
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_KEY}`,
+            Accept: "application/json",
+        },
+    });
+    
+    return response.data.results;
+}
+
 
 
