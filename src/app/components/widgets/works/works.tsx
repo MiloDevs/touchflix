@@ -31,20 +31,21 @@ export default function Works() {
         {/* Added max-width and centered using mx-auto */}
         {Steps.map((step, index) => (
           <div
-            className="max-w-xs p-4 mx-4 my-4 border border-gray-300 bg-white rounded-lg shadow-lg flex flex-col items-center"
+            className="max-w-xs p-4 py-10 mx-4 my-4 border border-slate-700 bg-transparent backdrop-blur rounded-lg shadow-lg flex flex-col items-center"
             key={index}
           >
-            <div className="mb-4">
+            <div className="mb-2">
               <Image
                 width={64}
                 height={64}
                 src={step.Icon}
                 alt={`Step ${index + 1}`}
+                className="invert"
               />
             </div>
             <div className="text-center">
               <h2 className="text-xl mb-2 text-black">{step.Q}</h2>
-              <p className="text-gray-700">{step.A}</p>
+              <p className="text-gray-500">{step.A}</p>
             </div>
           </div>
         ))}

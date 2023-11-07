@@ -22,7 +22,7 @@ export default function LandingPage() {
               objectPosition="center"
               quality={100}
             />
-            <div className="w-full h-full absolute top-0 bg-gradient-to-b from-black via-transparent/10 to-tranparent">
+            <div className="w-full h-full absolute top-0 bg-gradient-to-t from-black  to-black/80">
 
             </div>
           </div>
@@ -51,8 +51,8 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <section id="wct" className="px-4 ">
-        <header className="text-center font-semibold text-xl md:text-5xl pt-10">
+      <section id="wct" className="px-4 py-10">
+        <header className="text-center font-semibold text-xl md:text-5xl py-10">
           Why Choose Touchflix
         </header>
         <div>

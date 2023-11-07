@@ -117,7 +117,7 @@ export default function Home() {
         />
 
       <h1 className="font-semibold text-xl mt-5 px-12">Latest Movies</h1>
-      <div className="mt-3 grid grid-cols-6 gap-8 px-12">
+      <div className="m-3 mb-10 grid grid-cols-6 gap-8 px-12">
           {isloading && (
             [...Array(6)].map((_, index) => (
               <div key={index} className="w-full h-56 rounded-xl animate-pulse bg-neutral-700"></div>  

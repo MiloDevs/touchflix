@@ -1,3 +1,4 @@
+import Image from "next/image";
 export default function Info() {
   const whyUs = [
     {
@@ -15,11 +16,7 @@ export default function Info() {
       description:
         "Immerse yourself in stunning HD quality for a cinematic viewing experience.",
     },
-    {
-      title: "Cross-Platform Compatibility",
-      description:
-        "Watch on any device - from your TV to your tablet or smartphone.",
-    },
+    
     {
       title: "Personalized Recommendations",
       description:
@@ -28,8 +25,23 @@ export default function Info() {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-5">
-      <div className="m-2">
+    <div className="container mx-auto px-4 py-5 ht bg-[url('/mountaineers.jpg')] h-screen rounded-[3rem] overflow-clip bg-cover bg-center">
+      <div className="grid md:grid-cols-2 grid-cols-1 gap-8 place-content-center align-content-center h-full px-10">
+        {whyUs.map((item, index) => (
+          <div key={index} className="backdrop-blur bg-transparent p-20 rounded-lg shadow-lg border border-slate-700">
+            <h3 className="text-xl font-semibold mb-4 ">
+              {item.title}
+            </h3>
+            <p className="text-gray-500">{item.description}</p>
+          </div>
+        ))}
+      </div>      
+    </div>
+  );
+}
+
+
+/* <div className="m-2">
         {whyUs.map((item, index) => (
           <div key={index} className=" p-6 rounded-lg shadow-lg">
             <h3 className="text-xl font-semibold mb-4 ">
@@ -38,7 +50,4 @@ export default function Info() {
             <p className="text-gray-700">{item.description}</p>
           </div>
         ))}
-      </div>
-    </div>
-  );
-}
+      </div> */
