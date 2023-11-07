@@ -35,19 +35,8 @@ export default function Info() {
             <p className="text-gray-500">{item.description}</p>
           </div>
         ))}
-      </div>      
+      </div>  
+          
     </div>
   );
 }
-
-
-/* <div className="m-2">
-        {whyUs.map((item, index) => (
-          <div key={index} className=" p-6 rounded-lg shadow-lg">
-            <h3 className="text-xl font-semibold mb-4 ">
-              {item.title}
-            </h3>
-            <p className="text-gray-700">{item.description}</p>
-          </div>
-        ))}
-      </div> */
