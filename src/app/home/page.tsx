@@ -8,6 +8,7 @@ import Navbar from "../components/nav/navbar/navbar";
 import Footer from "../components/footer/footer";
 import { StarIcon } from "lucide-react";
 import ImageComponent from "../components/widgets/movie-image/MovieImage";
+import { NavigationMenuDemo } from "@/components/nav/NavItem";
 
 export type MovieResponse = {
   adult: boolean;
@@ -109,8 +110,7 @@ export default function Home() {
   
   return (
     <div>
-
-    <Navbar />
+    <NavigationMenuDemo />
     <div>
       <CarouselItem
         carouselProps={carouselitems}

@@ -3,7 +3,8 @@ import Footer from "@/app/components/footer/footer";
 import Navbar from "@/app/components/nav/navbar/navbar";
 import ImageComponent from "@/app/components/widgets/movie-image/MovieImage";
 import { MovieResponse } from "@/app/home/page";
-import { getMovies, getMoviesByGenre } from "@/app/tmdb/tmdb-helper";
+import { getMovies, getMoviesByGenre } from "@/app/lib/tmdb/tmdb-helper";
+import { NavigationMenuDemo } from "@/components/nav/NavItem";
 import { useParams, useSearchParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -51,8 +52,8 @@ const fetchMovies = async () => {
 
   return (
     <div>
-      <Navbar />
-      <div className="grid grid-cols-2 px-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:px-12">
+      <NavigationMenuDemo />
+      <div className="grid grid-cols-2 px-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:px-12 mt-10">
         {loading &&
           [...Array(12)].map((_, index) => (
             <div
@@ -60,6 +61,7 @@ const fetchMovies = async () => {
               className="w-full h-56 rounded-xl animate-pulse bg-neutral-700"
             ></div>
           ))}
+          
         {moviesData?.map((movie) => (
           <div 
             key={movie.id}

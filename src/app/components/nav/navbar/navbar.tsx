@@ -1,5 +1,5 @@
 "use client";
-import { MediaType, getGenres } from "@/app/tmdb/tmdb-helper";
+import { MediaType, getGenres } from "@/app/lib/tmdb/tmdb-helper";
 import { get } from "http";
 import Image from "next/image";
 import Link from "next/link";
