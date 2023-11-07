@@ -1,9 +1,15 @@
-import React from 'react'
+import LandingNav from "../components/nav/landingnav/landing-nav";
 
-const Support = () => {
+export default function Support() {
   return (
-    <div>Support</div>
-  )
+    <>
+      <LandingNav />
+      <a href="./">
+          <button>Back</button>
+        </a>
+      <form action="">
+        
+      </form>
+    </>
+  );
 }
-
-export default Support

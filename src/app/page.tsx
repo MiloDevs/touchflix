@@ -52,14 +52,14 @@ export default function LandingPage() {
         </div>
       </section>
       <section id="wct" className="px-4 ">
-        <header className="text-center font-semibold text-xl md:text-5xl">
+        <header className="text-center font-semibold text-xl md:text-5xl pt-10">
           Why Choose Touchflix
         </header>
         <div>
           <Info />
         </div>
       </section>
-      <section id="hit" className="px-4 ">
+      <section id="hit" className="px-4 pt-20">
         <header className="text-center font-semibold text-xl md:text-5xl">
           How it Works
         </header>
@@ -67,8 +67,8 @@ export default function LandingPage() {
           <Works />
         </div>
       </section>
-      <section id="FAQs" className="px-4">
-        <header className="text-center font-semibold text-xl md:text-5xl">
+      <section id="FAQs" className="px-4 pt-20">
+        <header className="text-center font-semibold text-xl md:text-7xl">
           Frequently Asked Questions
         </header>
         <div>

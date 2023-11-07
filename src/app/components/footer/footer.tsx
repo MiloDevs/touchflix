@@ -66,9 +66,9 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="sticky pt-10 bg-transparent z-20 bg-opacity-30 backdrop-blur-lg backdrop-filter">
+    <footer className="sticky bg-transparent z-20 bg-opacity-30 backdrop-blur-lg backdrop-filter">
       <div className="max-w-screen-xl mx-auto px-4 md:px-8">
-        <div className="flex-1 mt-16 space-y-6 justify-between sm:flex md:space-y-0">
+        <div className="flex-1 mt-2 space-y-6 justify-between sm:flex md:space-y-0">
           {footerNav.map((item, idx) => (
             <ul className="space-y-4 text-gray-300" key={idx}>
               <h4 className="text-gray-700 font-semibold sm:pb-2">

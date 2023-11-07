@@ -28,11 +28,11 @@ export default function Info() {
   ];
 
   return (
-    <div className="container mx-auto px-4">
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8">
+    <div className="container mx-auto px-4 py-5">
+      <div className="m-2">
         {whyUs.map((item, index) => (
-          <div key={index} className="bg-white p-6 rounded-lg shadow-lg">
-            <h3 className="text-xl font-semibold mb-4 text-black">
+          <div key={index} className=" p-6 rounded-lg shadow-lg">
+            <h3 className="text-xl font-semibold mb-4 ">
               {item.title}
             </h3>
             <p className="text-gray-700">{item.description}</p>

@@ -32,14 +32,14 @@ export default function FAQs() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-4">
+    <div className="max-w-7xl mx-auto p-4 py-10">
       {FAQs.map((faq, index) => (
         <div key={index} className="mb-4">
           <div
             className="bg-gray-100 p-4 cursor-pointer"
             onClick={() => handleToggle(index)}
           >
-            <h2 className="text-xl text-black">{faq.Q}</h2>
+            <h2 className="text-xl font-black text-black">{faq.Q}</h2>
           </div>
           {openIndex === index && (
             <div className="bg-white p-4 rounded-b-md">
@@ -48,9 +48,9 @@ export default function FAQs() {
           )}
         </div>
       ))}
-      <h1 className="text-center mb-4">
+      <h1 className="text-center mb-4 text-xl">
         Have a question that&apos;s not listed here? Feel free to{" "}
-        <a href="/support" className="text-red-200">
+        <a href="/support" className="text-red-500">
           contact us
         </a>{" "}
         for further assistance!
